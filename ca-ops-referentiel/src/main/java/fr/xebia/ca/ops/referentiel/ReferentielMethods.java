@@ -28,7 +28,7 @@ public class ReferentielMethods {
     }
 
     public static String getCredentialsPath() {
-        return "/var/secrets/google/key.json";
+        return "/var/run/secrets/kubernetes.io/serviceaccount/key.json";
     }
 
     public static String getTrainsFile() {

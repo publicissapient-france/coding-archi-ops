@@ -6,9 +6,12 @@ spec:
   serviceAccountName: knative-build
   source:
     git:
-      url: https://github.com/bbousquet-xebia/ca-ops-referentiel.git
+      url: https://github.com/xebia-france/coding-archi-ops.git
       revision: master
   steps:
   - name: build-and-push
-    image: gcr.io/cloud-builders/mvn
-    args: ["compile", "jib:build", "-Dimage=gcr.io/coding-archi-ops/ca-ops-referentiel"]
+    image: gcr.io/kaniko-project/executor:v0.1.0
+    args:
+    - --context=/workspace/ca-ops-referentiel
+    - --dockerfile=/workspace/ca-ops-referentiel/Dockerfile
+    - --destination=gcr.io/coding-archi-ops/ca-ops-referentiel

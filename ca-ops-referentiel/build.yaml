@@ -1,0 +1,14 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: ca-ops-referentiel-build
+spec:
+  serviceAccountName: knative-build
+  source:
+    git:
+      url: https://github.com/bbousquet-xebia/ca-ops-referentiel.git
+      revision: master
+  steps:
+  - name: build-and-push
+    image: gcr.io/cloud-builders/mvn
+    args: ["compile", "jib:build", "-Dimage=gcr.io/coding-archi-ops/ca-ops-referentiel"]

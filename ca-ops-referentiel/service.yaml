@@ -1,0 +1,35 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: ca-ops-referentiel
+  namespace: default
+spec:
+  runLatest:
+    configuration:
+      build:
+        serviceAccountName: ca-ops-build
+        source:
+          git:
+            url: https://source.developers.google.com/p/coding-archi-ops/r/ca-ops-referentiel
+            revision: master
+        template:
+          name: kaniko
+          arguments:
+          - name: IMAGE
+            value: &image gcr.io/coding-archi-ops/ca-ops-referentiel:latest
+      revisionTemplate:
+        spec:
+          container:
+            image: *image
+            imagePullPolicy: Always
+            env:
+            - name: TARGET
+              value: "Spring Boot Sample v2"
+            - name: PROJECT_ID
+              value: "coding-archi-ops"
+            - name: PROJECT_BUCKET
+              value: "dev-ca-ops"
+            - name: REFS_FOLDER
+              value: "refs"
+            - name: TRAINS_REF_FILE_NAME
+              value: "trains.json"

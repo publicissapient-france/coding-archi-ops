@@ -15,3 +15,11 @@ spec:
     - --context=/workspace/ca-ops-referentiel
     - --dockerfile=/workspace/ca-ops-referentiel/Dockerfile
     - --destination=gcr.io/coding-archi-ops/ca-ops-referentiel
+    volumeMounts:
+      - name: google-cloud-key
+        mountPath: /var/secrets/google
+
+  volumes:
+  - name: google-cloud-key
+    secret:
+      secretName: caops-key

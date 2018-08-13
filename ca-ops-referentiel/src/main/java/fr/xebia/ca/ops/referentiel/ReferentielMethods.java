@@ -1,10 +1,14 @@
 package fr.xebia.ca.ops.referentiel;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.auth.oauth2.ServiceAccountCredentials;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
@@ -20,7 +24,11 @@ public class ReferentielMethods {
     }
 
     public static String getRefPath(String refName) {
-        return "/" + System.getenv("REFS_FOLDER") + "/" + refName;
+        return System.getenv("REFS_FOLDER") + "/" + refName;
+    }
+
+    public static String getCredentialsPath() {
+        return "/var/secrets/google/coding-archi-ops.json";
     }
 
     public static String getTrainsFile() {
@@ -28,8 +36,15 @@ public class ReferentielMethods {
     }
 
     public static List<Train> getTrains() throws IOException {
+        GoogleCredentials credentials;
+        File credentialsPath = new File(getCredentialsPath());
+        try (FileInputStream serviceAccountStream = new FileInputStream(credentialsPath)) {
+            credentials = ServiceAccountCredentials.fromStream(serviceAccountStream);
+        }
+
         Storage storage = StorageOptions.newBuilder()
                 .setProjectId(getProjectId())
+                .setCredentials(credentials)
                 .build()
                 .getService();
 

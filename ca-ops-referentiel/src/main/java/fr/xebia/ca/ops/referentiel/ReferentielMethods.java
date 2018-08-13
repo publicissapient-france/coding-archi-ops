@@ -28,7 +28,7 @@ public class ReferentielMethods {
     }
 
     public static String getCredentialsPath() {
-        return "/var/secrets/google/coding-archi-ops.json";
+        return "/var/secrets/google/key.json";
     }
 
     public static String getTrainsFile() {

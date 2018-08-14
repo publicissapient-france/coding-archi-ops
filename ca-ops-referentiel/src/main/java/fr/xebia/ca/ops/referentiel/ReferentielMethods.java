@@ -42,12 +42,11 @@ public class ReferentielMethods {
             credentials = ServiceAccountCredentials.fromStream(serviceAccountStream);
         }
 */
-        Storage storage = StorageOptions.getDefaultInstance().getService();
-//        Storage storage = StorageOptions.newBuilder()
-//                .setProjectId(getProjectId())
+        Storage storage = StorageOptions.newBuilder()
+                .setProjectId(getProjectId())
 //                .setCredentials(credentials)
-//                .build()
-//                .getService();
+                .build()
+                .getService();
 
         Blob blob = storage.get(getProjectBucket(), getRefPath(getTrainsFile()));
 

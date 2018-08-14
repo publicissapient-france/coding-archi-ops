@@ -8,7 +8,7 @@ spec:
     configuration:
       revisionTemplate:
         spec:
-          serviceAccountName: knative-build
+          serviceAccountName: caops-build
           container:
             image: gcr.io/coding-archi-ops/ca-ops-referentiel
             imagePullPolicy: Always

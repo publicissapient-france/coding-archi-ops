@@ -5,5 +5,6 @@ RUN mvn package -DskipTests
 
 FROM openjdk:8-jre-alpine
 COPY --from=build ./target/ca-ops-referentiel-*.jar referentiel.jar
+COPY /secret/key.json key.json
 VOLUME /tmp
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/referentiel.jar"]

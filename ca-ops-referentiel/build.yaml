@@ -17,8 +17,10 @@ spec:
     - --destination=gcr.io/coding-archi-ops/ca-ops-referentiel
     volumeMounts:
       - name: google-cloud-key
-        mountPath: /var/secrets/google
-
+        mountPath: /secret
+    env:
+      - name: GOOGLE_APPLICATION_CREDENTIALS
+        value: /secret/key.json
   volumes:
   - name: google-cloud-key
     secret:

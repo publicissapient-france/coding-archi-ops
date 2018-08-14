@@ -28,7 +28,7 @@ public class ReferentielMethods {
     }
 
     public static String getCredentialsPath() {
-        return "/var/run/secrets/kubernetes.io/serviceaccount/key.json";
+        return System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
     }
 
     public static String getTrainsFile() {

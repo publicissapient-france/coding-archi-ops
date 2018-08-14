@@ -16,7 +16,7 @@ public class ReferentielApplication {
 	String message;
 
 	@RestController
-	class HelloworldController {
+	class ReferentielController {
 		@GetMapping("/trains")
 		List<Train> listTrains() throws IOException {
 			return ReferentielMethods.getTrains();

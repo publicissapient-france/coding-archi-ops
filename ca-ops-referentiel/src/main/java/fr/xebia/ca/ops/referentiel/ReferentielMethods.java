@@ -36,15 +36,15 @@ public class ReferentielMethods {
     }
 
     public static List<Train> getTrains() throws IOException {
-        GoogleCredentials credentials;
+/*        GoogleCredentials credentials;
         File credentialsPath = new File(getCredentialsPath());
         try (FileInputStream serviceAccountStream = new FileInputStream(credentialsPath)) {
             credentials = ServiceAccountCredentials.fromStream(serviceAccountStream);
         }
-
+*/
         Storage storage = StorageOptions.newBuilder()
                 .setProjectId(getProjectId())
-                .setCredentials(credentials)
+//                .setCredentials(credentials)
                 .build()
                 .getService();
 

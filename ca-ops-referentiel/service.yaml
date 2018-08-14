@@ -8,6 +8,7 @@ spec:
     configuration:
       revisionTemplate:
         spec:
+          serviceAccountName: knative-build
           container:
             image: gcr.io/coding-archi-ops/ca-ops-referentiel
             imagePullPolicy: Always
@@ -22,4 +23,6 @@ spec:
               value: "refs"
             - name: TRAINS_REF_FILE_NAME
               value: "trains.json"
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /secret/key.json
 

@@ -15,7 +15,7 @@ public class IngestionApplication {
 
 	@RestController
 	class ReferentielController {
-		@PostMapping
+		@PostMapping("/anomalie")
 		String add(@RequestBody Anomalie input) {
 
 			String typeTrain = IngestionMethods.getTypeTrain(input);

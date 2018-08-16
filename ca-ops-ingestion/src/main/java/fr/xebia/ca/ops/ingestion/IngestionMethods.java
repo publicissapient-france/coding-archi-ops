@@ -19,22 +19,22 @@ public class IngestionMethods {
                 null,
                 new ParameterizedTypeReference<List<Train>>() {});
 
-        Train train = trains.getBody().stream().filter(x -> x.idTrain.equals(anomalie.idTrain))
+        Train train = trains.getBody().stream().filter(x -> x.getIdTrain().equals(anomalie.getIdTrain()))
                 .findFirst().get();
 
-        return train.typeTrain;
+        return train.getTypeTrain();
     }
 
     public static AnomalieCompletee completerAnomalie(Anomalie anomalie, String typeTrain) {
-        AnomalieCompletee anomalieCompletee = new AnomalieCompletee();
-        anomalieCompletee.category = anomalie.category;
-        anomalieCompletee.sousCategory = anomalie.sousCategory;
-        anomalieCompletee.creationTs = anomalie.creationTs;
-        anomalieCompletee.idTrain = anomalie.idTrain;
-        anomalieCompletee.value = anomalie.value;
-        anomalieCompletee.typeTrain = typeTrain;
 
-        return anomalieCompletee;
+        return AnomalieCompletee.builder()
+                .category(anomalie.getCategory())
+                .creationTs(anomalie.getCreationTs())
+                .idTrain(anomalie.getIdTrain())
+                .sousCategory(anomalie.getSousCategory())
+                .typeTrain(typeTrain)
+                .value(anomalie.getValue())
+                .build();
     }
 
     public static void sendToPersistence(AnomalieCompletee anomalieCompletee) {

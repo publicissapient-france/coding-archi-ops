@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Route
+metadata:
+  name: ca-ops-ingestion
+  namespace: default
+spec:
+  traffic:
+  - configurationName: ca-ops-ingestion
+    percent: 100

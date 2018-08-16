@@ -1,0 +1,18 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Configuration
+metadata:
+  name: ca-ops-ingestion
+  namespace: default
+spec:
+  revisionTemplate:
+    metadata:
+      labels:
+        knative.dev/type: container
+    spec:
+      container:
+        image: gcr.io/coding-archi-ops/ca-ops-ingestion
+        env:
+        - name: TARGET
+          value: "Spring Boot Sample v2"
+        - name: PROJECT_ID
+          value: "coding-archi-ops"

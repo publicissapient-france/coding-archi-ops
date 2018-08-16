@@ -1,7 +1,7 @@
 apiVersion: build.knative.dev/v1alpha1
 kind: Build
 metadata:
-  name: ca-ops-referentiel-build
+  name: ca-ops-ingestion-build
 spec:
   serviceAccountName: caops-build
   source:
@@ -12,9 +12,9 @@ spec:
   - name: build-and-push
     image: gcr.io/kaniko-project/executor:v0.1.0
     args:
-    - --context=/workspace/ca-ops-referentiel
-    - --dockerfile=/workspace/ca-ops-referentiel/Dockerfile
-    - --destination=gcr.io/coding-archi-ops/ca-ops-referentiel
+    - --context=/workspace/ca-ops-ingestion
+    - --dockerfile=/workspace/ca-ops-ingestion/Dockerfile
+    - --destination=gcr.io/coding-archi-ops/ca-ops-ingestion
     volumeMounts:
       - name: google-cloud-key
         mountPath: /secret

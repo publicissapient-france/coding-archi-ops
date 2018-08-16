@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Route
+metadata:
+  name: ca-ops-referentiel
+  namespace: default
+spec:
+  traffic:
+  - configurationName: ca-ops-referentiel
+    percent: 100

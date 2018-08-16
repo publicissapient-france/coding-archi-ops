@@ -8,7 +8,7 @@ spec:
     configuration:
       revisionTemplate:
         spec:
-          serviceAccountName: caops-build
+          serviceAccountName: binder
           container:
             image: gcr.io/coding-archi-ops/ca-ops-referentiel
             imagePullPolicy: Always

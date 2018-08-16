@@ -9,7 +9,7 @@ import java.util.List;
 
 public class IngestionMethods {
 
-    public static String getReferentielHost() { return System.getenv("CA_OPS_REFERENTIEL_SERVICE_HOST"); }
+    public static String getReferentielHost() { return "ca-ops-referentiel"; }
 
     public static String getTypeTrain(Anomalie anomalie) {
         RestTemplate restTemplate = new RestTemplate();

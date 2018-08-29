@@ -18,10 +18,14 @@ spec:
     volumeMounts:
       - name: google-cloud-key
         mountPath: /secret
+        readOnly: true
     env:
       - name: GOOGLE_APPLICATION_CREDENTIALS
-        value: /secret/key.json
+        value: /secret/sa_credentials.json
   volumes:
   - name: google-cloud-key
     secret:
-      secretName: caops-key
+      secretName: appspot-cred
+      items:
+      - key: sa_json
+        path: sa_credentials.json

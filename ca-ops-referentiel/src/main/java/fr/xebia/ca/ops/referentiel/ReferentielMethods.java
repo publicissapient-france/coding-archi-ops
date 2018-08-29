@@ -27,26 +27,12 @@ public class ReferentielMethods {
         return System.getenv("REFS_FOLDER") + "/" + refName;
     }
 
-    public static String getCredentialsPath() {
-        return System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
-    }
-
     public static String getTrainsFile() {
         return System.getenv("TRAINS_REF_FILE_NAME");
     }
 
     public static List<Train> getTrains() throws IOException {
-/*        GoogleCredentials credentials;
-        File credentialsPath = new File(getCredentialsPath());
-        try (FileInputStream serviceAccountStream = new FileInputStream(credentialsPath)) {
-            credentials = ServiceAccountCredentials.fromStream(serviceAccountStream);
-        }
-*/
-        Storage storage = StorageOptions.newBuilder()
-                .setProjectId(getProjectId())
-//                .setCredentials(credentials)
-                .build()
-                .getService();
+        Storage storage = StorageOptions.getDefaultInstance().getService();
 
         Blob blob = storage.get(getProjectBucket(), getRefPath(getTrainsFile()));
 

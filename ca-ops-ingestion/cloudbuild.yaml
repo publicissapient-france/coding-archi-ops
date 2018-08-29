@@ -1,0 +1,6 @@
+steps:
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'ca-ops-ingestion/build.yaml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-b'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=dev-caops-cluster'

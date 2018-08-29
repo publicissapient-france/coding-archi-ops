@@ -1,0 +1,29 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: ca-ops-ingestion-build
+spec:
+  serviceAccountName: caops-build
+  source:
+    git:
+      url: https://github.com/xebia-france/coding-archi-ops.git
+      revision: master
+  steps:
+  - name: build-and-push
+    image: gcr.io/kaniko-project/executor:v0.1.0
+    args:
+    - --context=/workspace/ca-ops-ingestion
+    - --dockerfile=/workspace/ca-ops-ingestion/Dockerfile
+    - --destination=gcr.io/coding-archi-ops/ca-ops-ingestion
+    volumeMounts:
+      - name: google-cloud-key
+        mountPath: /secret
+    env:
+      - name: GOOGLE_APPLICATION_CREDENTIALS
+        value: /secret/key.json
+      - name: VERSION
+        value: v0.1.0
+  volumes:
+  - name: google-cloud-key
+    secret:
+      secretName: caops-key

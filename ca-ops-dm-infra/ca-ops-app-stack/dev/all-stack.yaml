@@ -1,0 +1,13 @@
+imports:
+- path: ../../runtimeconfig/runtimeconfig.jinja
+- path: ../../runtimeconfig/runtimeconfig-variable.jinja
+- path: ../../storage/bucket.jinja
+- path: runtimeconfig.jinja
+- path: storage.jinja
+
+resources:
+- type: runtimeconfig.jinja
+  name: caops-app-config
+
+- type: storage.jinja
+  name: ingestion-bucket

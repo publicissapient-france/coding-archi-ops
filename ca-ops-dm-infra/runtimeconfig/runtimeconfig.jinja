@@ -1,0 +1,12 @@
+{% set CONFIG_NAME = 'config-' + env['deployment'] %}
+
+resources:
+- type: gcp-types/runtimeconfig-v1beta1:projects.configs
+  name: {{ CONFIG_NAME }}
+  properties:
+    config: {{ CONFIG_NAME }}
+    description: {{ properties['env'] }}
+
+outputs:
+- name: configName
+  value: $(ref.{{ CONFIG_NAME }}.name)

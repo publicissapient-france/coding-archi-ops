@@ -1,0 +1,11 @@
+{% set BUCKET_NAME = env['deployment'] + '-' + properties['name'] %}
+
+resources:
+- type: storage.v1.bucket
+  name: {{ BUCKET_NAME }}
+  properties:
+    project: env['project']
+
+outputs:
+- name: name
+  value: $(ref.{{ BUCKET_NAME }}.name)

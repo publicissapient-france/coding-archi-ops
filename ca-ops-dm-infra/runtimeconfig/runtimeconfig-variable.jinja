@@ -1,0 +1,15 @@
+{% set VARIABLE_PREFIX = properties['env'] %}
+{% set VARIABLE_NAME = properties['variable'] %}
+{% set VARIABLE_VALUE = properties['value'] %}
+
+resources:
+- type: gcp-types/runtimeconfig-v1beta1:projects.configs.variables
+  name: {{ VARIABLE_NAME }}
+  properties:
+    parent: {{ properties['parent'] }}
+    variable: {{ VARIABLE_PREFIX }}/{{ VARIABLE_NAME }}
+    text: {{ VARIABLE_VALUE }}
+
+outputs:
+- name: value
+  value: $(ref.{{ VARIABLE_NAME }}.text)

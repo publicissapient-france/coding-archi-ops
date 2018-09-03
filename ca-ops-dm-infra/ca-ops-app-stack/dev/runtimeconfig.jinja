@@ -1,0 +1,14 @@
+
+resources:
+- type: ../../runtimeconfig/runtimeconfig.jinja
+  name: caops-app-config
+  properties:
+    env: dev
+
+- type: ../../runtimeconfig/runtimeconfig-variable.jinja
+  name: ingestion-bucket-variable
+  properties:
+    parent: $(ref.caops-app-config.configName)
+    env: dev
+    variable: ingestion-bucket
+    value: ingestion

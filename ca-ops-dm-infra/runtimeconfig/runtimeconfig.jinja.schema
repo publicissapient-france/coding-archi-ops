@@ -1,0 +1,15 @@
+
+info:
+  description: A simple replicated service in a Kubernetes cluster.
+  author: Google, Inc.
+
+properties:
+  env:
+    type: string
+    description: L'environnement dev ou prod
+
+outputs:
+  configName:
+    description: Le nom de la config
+    type: string
+

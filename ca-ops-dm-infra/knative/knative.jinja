@@ -1,0 +1,25 @@
+{% set CLUSTER_NAME = env['deployment'] + '-cluster' %}
+{% set KNATIVE_NAME = env['deployment'] + '-knative' %}
+{% set REGION_NAME = 'europe-west1-b' %}
+
+resources:
+- name: build-knative
+  action: gcp-types/cloudbuild-v1:cloudbuild.projects.builds.create
+  metadata:
+    runtimePolicy:
+    - UPDATE_ALWAYS
+  properties:
+    steps:
+    - name: 'gcr.io/cloud-builders/git'
+      args: ['clone', 'https://source.developers.google.com/p/coding-archi-ops/r/ca-ops-dm-infra']
+
+    - name: gcr.io/cloud-builders/gcloud
+      args:
+      - deployment-manager
+      - deployments
+      - create
+      - {{ CLUSTER_NAME }}
+      - --config
+      - ./ca-ops-dm-infra/istio/istio-cluster.yaml
+
+    timeout: 1200s

@@ -12,6 +12,8 @@ spec:
       container:
         image: gcr.io/coding-archi-ops/ca-ops-referentiel
         env:
+        - name: PROJECT_VERSION
+          value: "v1"
         - name: TARGET
           value: "Spring Boot Sample v2"
         - name: PROJECT_ID

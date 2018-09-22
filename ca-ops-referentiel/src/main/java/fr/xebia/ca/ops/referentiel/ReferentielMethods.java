@@ -17,6 +17,10 @@ public class ReferentielMethods {
         return System.getenv("PROJECT_ID");
     }
 
+    public static String getVersion() {
+        return System.getenv("PROJECT_VERSION");
+    }
+
     public static String getProjectBucket() {
         return System.getenv("PROJECT_BUCKET");
     }

@@ -23,3 +23,5 @@ spec:
               value: "refs"
             - name: TRAINS_REF_FILE_NAME
               value: "trains.json"
+            - name: PROJECT_VERSION
+              value: "v1"

@@ -8,7 +8,7 @@ spec:
     configuration:
       revisionTemplate:
         spec:
-          serviceAccountName: ca-ops-build
+          serviceAccountName: ca-ops
           container:
             image: gcr.io/coding-archi-ops/ca-ops-referentiel
             imagePullPolicy: Always
@@ -23,6 +23,3 @@ spec:
               value: "refs"
             - name: TRAINS_REF_FILE_NAME
               value: "trains.json"
-            - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /secret/sa_credentials.json
-

@@ -24,5 +24,5 @@ spec:
           value: "refs"
         - name: TRAINS_REF_FILE_NAME
           value: "trains.json"
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /secret/key.json
+        - name: PROJECT_VERSION
+          value: "v1"

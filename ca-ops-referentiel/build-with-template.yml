@@ -1,0 +1,18 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: ca-ops-referentiel-build
+spec:
+  serviceAccountName: builder-serviceaccount
+  source:
+    git:
+      url: https://github.com/xebia-france/coding-archi-ops.git
+      revision: master
+  template:
+    name: kaniko
+    arguments:
+    - name: DOCKERFILE
+      value: /workspace/ca-ops-referentiel/Dockerfile
+    - name: IMAGE
+      value: gcr.io/coding-archi-ops/ca-ops-referentiel
+

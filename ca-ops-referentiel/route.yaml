@@ -5,5 +5,5 @@ metadata:
   namespace: default
 spec:
   traffic:
-  - configurationName: ca-ops-referentiel
+  - revisionName: ca-ops-referentiel-00001
     percent: 100
